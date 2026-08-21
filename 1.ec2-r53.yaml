@@ -43,7 +43,7 @@
   - name: create route53 record 
     amazon.aws.route53:
       state: present
-      zone: "{{  domain_name }}"
+      zone: "{{ domain_name }}"
       record: "{{ item.item }}.{{ domain_name }}" # mongodb.dso86s.xyz
       type: A
       ttl: 1
