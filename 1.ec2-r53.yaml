@@ -58,3 +58,4 @@
       record: "{{ item.item }}.{{ domain_name }}"
       type: A
       value: "{{ item.instances[0].private_ip_address }}"
+    loop: "{{ ec2_output.results }}"
