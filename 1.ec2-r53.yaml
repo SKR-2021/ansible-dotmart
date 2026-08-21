@@ -47,5 +47,6 @@
       record: "{{ item.item }}.{{ domain_name }}" # mongodb.dso86s.xyz
       type: A
       ttl: 1
-      value: "{{ ec2_output.results[0].instances[0].private_ip_address }}" # private ip adding 
+      value: "{{ item.instances[0].private_ip_address }}" # private ip adding 
       overwrite: true
+    loop: "{{ ec2_output.results }}"
