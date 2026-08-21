@@ -3,7 +3,7 @@
   connection: local
   vars:
     ami_id: "ami-0220d79f3f480ecf5"
-    sg_id: "sg-056f6ae1ff0429ac9"
+    sg_id: "sg-0961a404cd03a451a"
     zone_id: "Z09150472BEG29NERJFM7"
     domain_name: "dso86s.xyz"
     instances:
@@ -13,7 +13,7 @@
     amazon.aws.ec2_instance:
       name: "{{ item }}"
       instance_type: t3.micro
-      vpc_subnet_id: subnet-02a9e2ee3cabd4c49
+      # vpc_subnet_id: subnet-02a9e2ee3cabd4c49
       security_group: "{{ sg_id }}"
       image_id: "{{ ami_id }}"
       tags:
