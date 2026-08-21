@@ -34,8 +34,18 @@
   #     msg: "{{ ec2_output.results[0].instances[0].private_ip_address }}"
     
 
-  - name: delete ec2 instance
-    amazon.aws.ec2_instance:
-      name: "{{ item }}"
-      state: absent
-    loop: "{{ instances }}"
+  # - name: delete ec2 instance
+  #   amazon.aws.ec2_instance:
+  #     name: "{{ item }}"
+  #     state: absent
+  #   loop: "{{ instances }}"
+
+  - name: create route53 record 
+    amazon.aws.route53:
+    state: present
+    zone: "{{  domain_name }}"
+    record: "{{ item.item }}. {{ domain_name }}" # mongodb.dso86s.xyz
+    type: A
+    ttl: 1
+    value: "{{ ec2_output.results[0].instances[0].private_ip_address }}" # private ip adding 
+    overwrite: true
