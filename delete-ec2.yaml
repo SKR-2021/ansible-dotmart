@@ -1,0 +1,17 @@
+- name: delete ec2 instances
+  hosts: local
+  connection: local
+
+  vars:
+    instances:
+      - mongodb
+      - redis
+
+  tasks:
+
+    - name: delete ec2 instance
+      amazon.aws.ec2_instance:
+        name: "{{ item }}"
+        state: absent
+        wait: true
+      loop: "{{ instances }}"
