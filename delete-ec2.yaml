@@ -15,5 +15,3 @@
         state: absent
         wait: true
       loop: "{{ instances }}"
-
-
