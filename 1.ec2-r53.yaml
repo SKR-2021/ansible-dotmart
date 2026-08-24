@@ -3,7 +3,7 @@
   connection: local
   vars:
     ami_id: "ami-0220d79f3f480ecf5"
-    sg_id: "sg-0961a404cd03a451a"
+    sg_id: "sg-056f6ae1ff0429ac9"
     zone_id: "Z09150472BEG29NERJFM7"
     domain_name: "dso86s.xyz"
     instances:
