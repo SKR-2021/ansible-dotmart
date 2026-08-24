@@ -35,11 +35,11 @@
   #     msg: "{{ ec2_output.results[0].instances[0].private_ip_address }}"
     
 
-  # - name: delete ec2 instance
-  #   amazon.aws.ec2_instance:
-  #     name: "{{ item }}"
-  #     state: absent
-  #   loop: "{{ instances }}"
+  - name: delete ec2 instance
+    amazon.aws.ec2_instance:
+      name: "{{ item }}"
+      state: absent
+    loop: "{{ instances }}"
 
   - name: create route53 record 
     amazon.aws.route53:
@@ -52,11 +52,11 @@
       overwrite: true
     loop: "{{ ec2_output.results }}"
 
-  # - name: Delete a Route 53 DNS record
-  #   amazon.aws.route53:
-  #     state: absent
-  #     zone: "{{ domain_name }}"
-  #     record: "{{ item.item }}.{{ domain_name }}"
-  #     type: A
-  #     value: "{{ item.instances[0].private_ip_address }}"
-  #   loop: "{{ ec2_output.results }}"
+  - name: Delete a Route 53 DNS record
+    amazon.aws.route53:
+      state: absent
+      zone: "{{ domain_name }}"
+      record: "{{ item.item }}.{{ domain_name }}"
+      type: A
+      value: "{{ item.instances[0].private_ip_address }}"
+    loop: "{{ ec2_output.results }}"
