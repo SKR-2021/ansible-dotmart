@@ -5,13 +5,20 @@
     - name: delete mongodb
       amazon.aws.ec2_instance:
         instance_ids:
-          - i-05e0450294340e227
+          - i-007c8b01d6f6acc04
         state: absent
         wait: true
 
     - name: delete redis
       amazon.aws.ec2_instance:
         instance_ids:
-          - i-029d8f8913e357b65
+          - i-026afdb37228ffe31
+        state: absent
+        wait: true
+
+    - name: delete redis
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-08cc413584f8b1ed7
         state: absent
         wait: true
