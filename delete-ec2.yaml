@@ -5,7 +5,7 @@
     - name: delete mongodb
       amazon.aws.ec2_instance:
         instance_ids:
-          - i-00e472dd5a549c65f
+          - i-0f683b4dd2715b1f9
         state: absent
         wait: true
 
@@ -34,6 +34,6 @@
     - name: delete catalogue
       amazon.aws.ec2_instance:
         instance_ids:
-          - i-0060c6c85998f9789
+          - i-0d021ccbf649f2b3c
         state: absent
         wait: true
