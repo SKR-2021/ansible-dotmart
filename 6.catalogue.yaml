@@ -60,13 +60,18 @@
   #   ansible.builtin.command: mongosh mongodb.dso86s.xyz --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
   #   register: catalogue_output
 
+  # - name: evaluate catalogue database
+  #   community.mongodb.mongodb_shell:
+  #     login_host: mongodb.dso86s.xyz
+  #     eval: db.getMongo().getDBNames().indexOf('catalogue')
+  #   register: catalogue_output
 
-  - name: evaluate catalogue database
-    community.mongodb.mongodb_shell:
-      login_host: mongodb.dso86s.xyz
-      eval: db.getMongo().getDBNames().indexOf('catalogue')
+  - name: Check if catalogue database exists
+    ansible.builtin.command:
+      cmd: >
+        mongosh mongodb.dso86s.xyz --quiet --eval
+        "db.getMongo().getDBNames().indexOf('catalogue')"
     register: catalogue_output
-
 
   - name: print catalogue output
     ansible.builtin.debug:
