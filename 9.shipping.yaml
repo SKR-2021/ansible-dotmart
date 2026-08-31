@@ -72,7 +72,7 @@
       dest: /etc/systemd/system/shipping.service
 
   - name: Import shipping data into mysql
-    ansible.mysql.mysql_db:
+    community.mysql.mysql_db:
       state: import
       name: all
       login_host: mysql.dso86s.xyz # The Shipping server is executing the SQL import, but the data is being stored in the remote MySQL server
