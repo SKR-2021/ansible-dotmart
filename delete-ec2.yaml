@@ -62,7 +62,7 @@
     - name: delete payment
       amazon.aws.ec2_instance:
         instance_ids:
-          - i-04a8bbbf4698e5d5b
+          - i-099b8359158f67a66
         state: absent
         wait: true
 
