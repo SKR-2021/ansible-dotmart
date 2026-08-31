@@ -13,9 +13,10 @@
   - name: install mysql python libraries
     ansible.builtin.pip:
       executable: pip3.9
-      name: PyMySQL
-      - PyMySQL
-      - cryptography
+      name: "{{ item }}"
+    loop:
+    - PyMySQL
+    - cryptography
 
   - name: create roboshop system user 
     ansible.builtin.user:
@@ -74,14 +75,14 @@
     ansible.mysql.mysql_db:
       state: import
       name: all
-      login_host: mysql.dso86s.xyz
+      login_host: mysql.dso86s.xyz # The Shipping server is executing the SQL import, but the data is being stored in the remote MySQL server
       login_user: root
       login_password: pRoboShop@1
       target: "{{ item }}"
     loop:
-    - /app/db/schema.sql
-    - /app/db/app-user.sql 
-    - /app/db/master-data.sql
+    - /app/db/schema.sql  # database/schema structure
+    - /app/db/app-user.sql # application database user/permissions
+    - /app/db/master-data.sql # initial Shipping application data
 
   - name: daemon reload enable and start
     ansible.builtin.systemd_service:
